@@ -178,7 +178,7 @@
 			$(".loading").each(
 				function() {
 
-					var fontSize = fullWidth * 0.001;
+					var fontSize = fullWidth * 0.010;
 
 					$(this).css({
 						fontSize: fontSize
@@ -394,6 +394,7 @@
 			wrapper.css({overflow: "hidden"});
 
 			content.hide();
+
 			var loading = $('<div class="loading">Carregando...</div>').appendTo(wrapper);
 
 			var interval = setInterval(function () {
