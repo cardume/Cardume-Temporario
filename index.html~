@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <title>Cardume</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.ba-hashchange.min.js"></script>
 <link rel="stylesheet" href="css/estilo.css" type="text/css" media="screen" />
 <script type="text/javascript">
 
@@ -289,6 +290,8 @@
 
 		function doTab(tabID, tabLink) {
 
+			tabLink = typeof(tabLink) != 'undefined' ? tabLink : '#home p a.' + tabID;
+
 			if($(tabLink).hasClass('active')) {
 
 				hideTabs();
@@ -358,10 +361,15 @@
 
 			function() {
 
-				var itemID = $(this).attr('class').split(' ');
-				var itemID = itemID[0];
+				if($(this).hasClass('active')) {
 
-				doTab(itemID);
+					hideTabs();
+
+					window.location = '#!/home';
+
+					return false;
+
+				}
 
 			}
 		);
@@ -415,7 +423,22 @@
 			}
 		);
 
-	});
+
+		$(window).hashchange(function() {
+
+			var location = window.location.hash;
+			var location = location.split('/');
+			var location = location[1];
+
+			doTab(location);
+
+		});
+
+		$(window).hashchange();
+			
+
+});
+
 
 </script>
 </head>
@@ -428,9 +451,9 @@
 	<h1>Cardume<img src="img/logo_preto.png"/></h1>
 	<p class="info">
 		<span>Enquanto nosso <del>café</del> site não fica pronto<br/>
-		leia um pouco </span><a href="#!/sobre/" class="sobre">sobre nós</a><span>,<br/>
-		dê uma olhada em alguns dos </span> <a href="#!/trabalhos/" class="trabalhos">nossos trabalhos<b class="close"> X</b></a><br/>
-		<span>e, se quiser, entre em</span> <a href="#!/contato/" class="contato">contato</a><span>!</span>
+		leia um pouco </span><a href="#!/sobre" class="sobre">sobre nós</a><span>,<br/>
+		dê uma olhada em alguns dos </span> <a href="#!/trabalhos" class="trabalhos">nossos trabalhos<b class="close"> X</b></a><br/>
+		<span>e, se quiser, entre em</span> <a href="#!/contato" class="contato">contato</a><span>!</span>
 	</p>
 
 	<div id="sobre" class="tab">
