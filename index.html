@@ -175,6 +175,18 @@
 				}
 			);
 
+			$(".loading").each(
+				function() {
+
+					var fontSize = fullWidth * 0.010;
+
+					$(this).css({
+						fontSize: fontSize
+					});
+
+				}
+			);
+
 			$("#home #contato").each(
 				function() {
 
@@ -225,10 +237,8 @@
 				}
 			);
 
-			if(!($.browser.msie)) {
-				hoverScroll("#sobre", "#sobre .content");
-				hoverScroll("#trabalhos", "#trabalhos ul");
-			}
+			hoverScroll("#sobre", "#sobre .content");
+			hoverScroll("#trabalhos", "#trabalhos ul");
 
 		}
 
@@ -379,7 +389,43 @@
 
 		function hoverScroll(wrapper, content){
 
-			$(wrapper).css({overflow: "hidden"});
+			var wrapper = jQuery(wrapper), content = jQuery(content);
+
+			wrapper.css({overflow: "hidden"});
+
+			content.hide();
+			var loading = $('<div class="loading">Carregando...</div>').appendTo(wrapper);
+
+			var interval = setInterval(function () {
+
+				var images = content.find('img');
+				var completed = 0;
+
+				// Counts number of images that are succesfully loaded
+
+				images.each(function () {
+					if (this.complete) completed++;
+				});
+
+				if (completed == images.length) {
+					clearInterval(interval);
+					// Timeout added to fix problem with Chrome
+					setTimeout(function () {
+
+						loading.hide();
+
+						content.slideDown('slow', function () {
+							enable(wrapper, content);
+						});
+
+					}, 1000);
+				}
+			}, 100);
+
+		}
+
+
+		function enable(wrapper, content){
 
 			var inactiveMargin = 200;
 
@@ -388,7 +434,7 @@
 			var wrapperHeight = $(wrapper).height();
 
 			// Using outer height to include padding too
-			var scrollableHeight = $(content).height() + 2*inactiveMargin;
+			var contentHeight = $(content).height() + 2*inactiveMargin;
 
 			// Do not cache wrapperOffset, because it can change when user resizes window
 			// We could use onresize event, but it&#39;s just not worth doing that 
@@ -399,7 +445,7 @@
 				var wrapperOffset = $(wrapper).offset();
 
 				// Scroll menu
-				var top = (e.pageY -  wrapperOffset.top) * (scrollableHeight - wrapperHeight) / wrapperHeight - inactiveMargin;
+				var top = (e.pageY -  wrapperOffset.top) * (contentHeight - wrapperHeight) / wrapperHeight - inactiveMargin;
 
 				if (top < 0){
 					top = 0;
@@ -409,10 +455,8 @@
 			});
 		}
 
-		if(!($.browser.msie)) {
-			hoverScroll("#sobre", "#sobre .content");
-			hoverScroll("#trabalhos", "#trabalhos ul");
-		}
+		hoverScroll("#sobre", "#sobre .content");
+		hoverScroll("#trabalhos", "#trabalhos ul");
 
 		$("#trabalhos img").hover(
 			function() {
