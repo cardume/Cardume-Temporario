@@ -409,8 +409,10 @@
 			});
 		}
 
-		hoverScroll("#sobre", "#sobre .content");
-		hoverScroll("#trabalhos", "#trabalhos ul");
+		if(!$.browser.msie) {
+			hoverScroll("#sobre", "#sobre .content");
+			hoverScroll("#trabalhos", "#trabalhos ul");
+		}
 
 		$("#trabalhos img").hover(
 			function() {
