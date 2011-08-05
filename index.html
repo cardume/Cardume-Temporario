@@ -165,9 +165,10 @@
 					var tabWidth = $("#trabalhos").width();
 
 					var originalWidth = $(this).width();
+					var originalHeight = $(this).height();
 
 					var imgWidth = tabWidth-80;
-					var imgHeight = imgWidth / 1.58;
+					var imgHeight = imgWidth / ( originalWidth / originalHeight );
 
 					$(this).width(imgWidth).height(imgHeight);
 
@@ -224,9 +225,10 @@
 				}
 			);
 
-
-			hoverScroll("#sobre", "#sobre .content");
-			hoverScroll("#trabalhos", "#trabalhos ul");
+			if(!$.browser.ie) {
+				hoverScroll("#sobre", "#sobre .content");
+				hoverScroll("#trabalhos", "#trabalhos ul");
+			}
 
 		}
 
@@ -407,8 +409,10 @@
 			});
 		}
 
-	//	hoverScroll("#sobre", "#sobre .content");
-	//	hoverScroll("#trabalhos", "#trabalhos ul");
+		if(!$.browser.ie) {
+			hoverScroll("#sobre", "#sobre .content");
+			hoverScroll("#trabalhos", "#trabalhos ul");
+		}
 
 		$("#trabalhos img").hover(
 			function() {
@@ -437,7 +441,6 @@
 		});
 
 		$(window).hashchange();
-			
 
 });
 
