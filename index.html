@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Cardume</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
+<link rel="stylesheet" href="css/estilo.css" type="text/css" media="screen" />
+<script type="text/javascript">
+
+	$(document).ready(function() {
+
+		if($.browser.msie) {
+			$("p.msie").fadeIn('fast');
+		}
+
+		var tabSize = $("#home .tab").width();
+
+		$("#home .tab").css({
+			right: -tabSize
+		});
+
+		function setDimensions() {
+
+			var fullWidth = $(window).width();
+			var fullHeight = $(window).height();
+
+			$("img.bg").each(
+				function() {
+
+					var originalWidth = $(this).width();
+					var originalHeight = $(this).height();
+
+					var imgHeight = (originalHeight * fullWidth) / originalWidth;
+					var imgWidth = (originalWidth * fullHeight) / originalHeight;
+
+					if(imgHeight < $(window).height()) {
+
+						$(this).width(imgWidth).height(fullHeight);
+
+					} else {
+	
+						$(this).width(fullWidth).height(imgHeight);
+
+					}
+
+				}
+			);
+
+			$("h1 img").each(
+				function() {
+
+					var originalWidth = $(this).width();
+					var originalHeight = $(this).height();
+
+					var imgWidth = fullWidth / 6.315;
+					var imgHeight = imgWidth / 0.912;
+
+					$(this).width(imgWidth).height(imgHeight);
+
+					if( $(this).width() <= 150) {
+
+						$(this).width(150).height(164);
+
+					}
+					
+
+				}
+			);
+
+			$("#home p.info").each(
+				function() {
+
+					var fontSize = fullWidth * 0.010;
+					var fontTop = fullWidth * 0.095;
+					var fontLeft = fullWidth * 0.234;
+
+					$(this).css('font-size', fontSize).css('top', fontTop).css('left', fontLeft);
+
+					if(fontSize <= 9) {
+
+						$(this).css('font-size', 9);
+
+						if(fontLeft <= 200) {
+
+							$(this).css('left', 200);
+
+						}
+
+						if(fontTop <= 85) {
+
+							$(this).css('top', 85);
+
+						}
+
+					}
+				}
+			);
+
+			if($.browser.msie) {
+
+				$("#home p.msie").each(
+					function() {
+
+						var fontSize = fullWidth * 0.010;
+						var fontMargin = fullWidth / 109.4;
+
+						$(this).css({
+							fontSize: fontSize,
+							padding: fontMargin
+						});
+
+						if(fontSize <= 9) {
+
+							$(this).css('font-size', 9);
+
+						}
+					}
+				);
+
+			}
+
+			$("#home #sobre").each(
+				function() {
+
+					var fontSize = fullWidth * 0.010;
+					var fontMargin = fullWidth / 27.35;
+					var fontMarginHalf = fullWidth / 54.7;
+					var liPadding = fullWidth / 109.4; 
+
+					$(this).css('font-size', fontSize);
+
+					$(this).find('p').css({
+						margin: fontMarginHalf + 'px ' + fontMargin + 'px'
+					});
+
+					$(this).find('p:first-child').css({
+						marginTop: fontMargin
+					});
+
+					$(this).find('h2').css({
+						margin: '0 ' + fontMargin + 'px'
+					});
+
+					$(this).find('li').css({
+						padding: liPadding
+					});
+
+					$(this).find('ul').css({
+						margin: fontMarginHalf + 'px ' + fontMargin + 'px ' + fontMargin + 'px'
+					});
+
+					if(fontSize <= 9) {
+
+						$(this).css('font-size', 9);
+
+					}
+
+				}
+			);
+
+			$("#home #trabalhos img").each(
+				function() {
+
+					var tabWidth = $("#trabalhos").width();
+
+					var originalWidth = $(this).width();
+
+					var imgWidth = tabWidth-80;
+					var imgHeight = imgWidth / 1.58;
+
+					$(this).width(imgWidth).height(imgHeight);
+
+				}
+			);
+
+			$("#home #contato").each(
+				function() {
+
+					var fontSize = fullWidth * 0.012;
+					var formMargin = fullWidth / 27.35;
+					var inputMargin = fullWidth / 54.7;
+					var inputPadding = fullWidth / 109.4;
+					var textareaHeight = fullHeight / 2.386;
+
+					var inputWidth = $("#contato").width() - ( inputPadding * 2 ) - ( formMargin * 2 );
+
+					$(this).find('form').css({
+						margin: formMargin
+					});
+
+					$(this).find('input, textarea').css({
+						fontSize: fontSize,
+						padding: inputPadding,
+						marginBottom: inputMargin
+					}).width(inputWidth);
+
+					$(this).find('textarea').css({
+						height: textareaHeight
+					});
+
+					if(fontSize <= 9) {
+
+						$(this).find('input, textarea').css('font-size', 9);
+
+					}
+
+				}
+			);
+
+			$(".tab").each(
+				function() {
+
+					var tabRight = parseInt($(this).css('right'), 10);
+					var tabSize = $(this).width();
+
+					if( tabRight < 0 ) {
+
+						$(this).css({
+							right: -tabSize
+						});
+
+					}
+				}
+			);
+
+
+			hoverScroll("#sobre", "#sobre .content");
+			hoverScroll("#trabalhos", "#trabalhos ul");
+
+		}
+
+		setDimensions();
+
+		$(window).resize(
+			function() {
+				setDimensions();
+			}
+		);
+
+		$("#home > p > a").addClass('inactive');
+
+
+		function hideTabs() {
+
+			var itemOffset = $("#home p a.active").position();
+			var itemTop = $("#home p a.active").attr('rel');
+			var itemLeft = itemOffset.left;
+			var tabSize = $('.tab').width();
+
+			if($.browser.msie) {
+
+				$("#home p a.active").css({
+					width: 150,
+					fontSize: '100%',
+					borderWidth: '1px',
+					top: itemTop,
+					left: itemLeft,
+					paddingBottom: 0
+				}).removeClass('active').addClass('inactive');
+
+			} else {
+
+				$("#home p a.active").animate({
+					width: 150,
+					fontSize: '100%',
+					borderWidth: '1px',
+					top: itemTop,
+					left: itemLeft,
+					paddingBottom: 0
+				}, 'fast', function() {
+					$("#home p a.active").removeClass('active').addClass('inactive');
+				});
+
+			}
+
+			$("#home .tab").animate({
+				right: -tabSize
+			}, 'fast');
+
+			$("#home p span").animate({
+				opacity: '1'
+			}, 'fast');
+
+			$("img.bg").animate({
+				opacity: '1'
+			}, 'fast');
+
+		}
+
+		$("#home p a").click(
+
+			function() {					
+
+				var itemID = $(this).attr('class').split(' ');
+
+				if($(this).hasClass('active')) {
+
+					hideTabs();
+
+					return false;
+
+				} else if($("#home p a.active").length) {
+
+					hideTabs();
+
+				}
+
+				// Começa animacao do clicado
+
+				var itemOffset = $(this).position();
+				var itemTop = itemOffset.top;
+				var itemLeft = itemOffset.left;
+
+				$(this).attr('rel', itemTop);
+
+				$(this).addClass('active').removeClass('inactive')
+				.css({
+					top: itemTop,
+					left: itemLeft
+				});
+
+				if($.browser.msie) {
+
+					$(this).css({
+						width: '1920px',
+						borderWidth: '4px',
+						fontSize: '200%',
+						top: '180%',
+						left: itemLeft,
+						paddingBottom: 10
+					}).addClass('active').removeClass('inactive')
+
+				} else {
+
+					$(this).animate({
+						width: '1920px',
+						borderWidth: '4px',
+						fontSize: '200%',
+						top: '180%',
+						left: itemLeft,
+						paddingBottom: 10
+					}, 'fast', function() {
+						$(this).addClass('active').removeClass('inactive')
+					});
+				}
+
+				$("#home #" + itemID[0]).animate({
+					right: 0
+				}, 'fast');
+
+				$("#home p span").animate({
+					opacity: '0.2'
+				}, 'fast');
+
+				$("img.bg").animate({
+					opacity: '0.5'
+				}, 'fast');
+
+				return false;
+
+			}
+		);
+
+
+		function hoverScroll(wrapper, content){
+
+			$(wrapper).css({overflow: "hidden"});
+
+			var inactiveMargin = 200;
+
+			// Cache for performance
+			var wrapperWidth = $(wrapper).width();
+			var wrapperHeight = $(wrapper).height();
+
+			// Using outer height to include padding too
+			var scrollableHeight = $(content).height() + 2*inactiveMargin;
+
+			// Do not cache wrapperOffset, because it can change when user resizes window
+			// We could use onresize event, but it&#39;s just not worth doing that 
+			// var wrapperOffset = wrapper.offset();
+
+			//When user move mouse over menu
+			$(wrapper).mousemove(function(e){
+				var wrapperOffset = $(wrapper).offset();
+
+				// Scroll menu
+				var top = (e.pageY -  wrapperOffset.top) * (scrollableHeight - wrapperHeight) / wrapperHeight - inactiveMargin;
+
+				if (top < 0){
+					top = 0;
+				}
+
+				$(wrapper).scrollTop(top);
+			});
+		}
+
+	//	hoverScroll("#sobre", "#sobre .content");
+	//	hoverScroll("#trabalhos", "#trabalhos ul");
+
+		$("#trabalhos img").hover(
+			function() {
+				$(this).animate({
+					opacity: 1
+				}, 'fast')
+			},
+			function() {
+				$(this).animate({
+					opacity: 0.4
+				}, 'fast')
+			}
+		);
+
+	});
+
+</script>
+</head>
+<body>
+<div id="home">
+	<img src="img/bg_.jpg" class="bg" />
+
+	<p class="msie">Ei amigo, tá na hora de baixar um navegador mais bacana, né?<br/>Que tal o <a href="http://www.mozilla.com/en-US/firefox/fx/" target="_blank" title="Mozilla Firefox">Mozilla Firefox</a> ou o <a href="http://www.google.com/chrome?hl=pt-BR" target="_blank" title="Google Chrome">Google Chrome</a>?</p>
+
+	<h1>Cardume<img src="img/logo_preto.png"/></h1>
+	<p class="info">
+		<span>Enquanto nosso <del>café</del> site não fica pronto<br/>
+		leia um pouco </span><a href="#" class="sobre">sobre nós</a><span>,<br/>
+		dê uma olhada em alguns dos </span> <a href="#" class="trabalhos">nossos trabalhos<b class="close"> X</b></a><br/>
+		<span>e, se quiser, entre em</span> <a href="#" class="contato">contato</a><span>!</span>
+	</p>
+
+	<div id="sobre" class="tab">
+
+		<div class="content">
+			<p>O <strong>Cardume</strong> é um estúdio de criação e design e nosso foco é em projetos relacionados a arte e cultura.</p>
+			<p>É composto pela chamada <em>rede de colaboradores flutuantes</em>. São fotógrafos, designers, ilustradores, editores, artistas plásticos,  programadores, produtores, grafiteiros, músicos, escultores, (…), e essa lista é sempre crescente, assim como a rede.</p>
+
+			<h2>FUNCIONA ASSIM:</h2>
+			<p>A principal característica do Cardume é a devoção pelo processo colaborativo. Para cada tipo de  trabalho, é formada uma equipe que atue nas áreas necessárias para a melhor elaboração e execução do trabalho. Dessa forma cada profissional executa sua especialidade, dando mais prazer ao trabalho e, como se sabe, tudo que é feito com prazer fica muito melhor. Assim, o cliente fica feliz e os peixinhos podem continuar a fazer o fazem de melhor.</p>
+
+			<h2>O QUE FAZEMOS:</h2>
+			<ul>
+				<li>fotografia | still, cobertura de evento, analógica, experimental…</li>
+				<li>design gráfico | catálogos, revistas, folhetos, cartazes, flyers, editoriais em geral</li>
+				<li>vídeos | vinhetas, clipes, teasers, elaboração de roteiro, filmagem alternativa, edição e finalização</li>
+				<li>web | criação de layout e programação em CSS3, HTML5, jQuery e PHP, primando softwares livres e usando o WorPress como principal ferramenta de produção</li>
+				<li>e mais: ilustração, motion graphics, cenografia, ou qualquer coisa que o cliente precisar e a rede de auto-pescados do cardume for capaz de produzir dentro do seu hibridismo artístico!</li>
+			</ul>
+		</div>
+
+	</div>
+
+	<div id="trabalhos" class="tab">
+
+		<ul>
+
+			<li>
+				<img src="http://lorempixum.com/632/400/" />
+			</li>
+
+			<li>
+				<img src="http://lorempixum.com/632/400/" />
+			</li>
+
+			<li>
+				<img src="http://lorempixum.com/632/400/" />
+			</li>
+
+			<li>
+				<img src="http://lorempixum.com/632/400/" />
+			</li>
+
+			<li>
+				<img src="http://lorempixum.com/632/400/" />
+			</li>
+
+			<li>
+				<img src="http://lorempixum.com/632/400/" />
+			</li>
+
+			<li>
+				<img src="http://lorempixum.com/632/400/" />
+			</li>
+
+			<li>
+				<img src="http://lorempixum.com/632/400/" />
+			</li>
+
+			<li>
+				<img src="http://lorempixum.com/632/400/" />
+			</li>
+
+			<li>
+				<img src="http://lorempixum.com/632/400/" />
+			</li>
+
+			<li>
+				<img src="http://lorempixum.com/632/400/" />
+			</li>
+
+		</ul>
+
+	</div>
+
+	<div id="contato" class="tab">
+
+		<form>
+
+			<input type="text" value="Seu nome"/>
+
+			<input type="text" value="E-mail"/>
+
+			<input type="text" value="Assunto da mensagem"/>
+
+			<textarea>Sua mensagem aqui!</textarea>
+
+			<input type="submit" value="Enviar"/>
+
+		</form>
+
+	</div>
+
+</div>
+</body>
+</html>
