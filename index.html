@@ -287,76 +287,81 @@
 
 		}
 
-		$("#home p a").click(
+		function doTab(tabID, tabLink) {
 
-			function() {					
+			if($(tabLink).hasClass('active')) {
 
-				var itemID = $(this).attr('class').split(' ');
-
-				if($(this).hasClass('active')) {
-
-					hideTabs();
-
-					return false;
-
-				} else if($("#home p a.active").length) {
-
-					hideTabs();
-
-				}
-
-				// Começa animacao do clicado
-
-				var itemOffset = $(this).position();
-				var itemTop = itemOffset.top;
-				var itemLeft = itemOffset.left;
-
-				$(this).attr('rel', itemTop);
-
-				$(this).addClass('active').removeClass('inactive')
-				.css({
-					top: itemTop,
-					left: itemLeft
-				});
-
-				if($.browser.msie) {
-
-					$(this).css({
-						width: '1920px',
-						borderWidth: '4px',
-						fontSize: '200%',
-						top: '180%',
-						left: itemLeft,
-						paddingBottom: 10
-					}).addClass('active').removeClass('inactive')
-
-				} else {
-
-					$(this).animate({
-						width: '1920px',
-						borderWidth: '4px',
-						fontSize: '200%',
-						top: '180%',
-						left: itemLeft,
-						paddingBottom: 10
-					}, 'fast', function() {
-						$(this).addClass('active').removeClass('inactive')
-					});
-				}
-
-				$("#home #" + itemID[0]).animate({
-					right: 0
-				}, 'fast');
-
-				$("#home p span").animate({
-					opacity: '0.2'
-				}, 'fast');
-
-				$("img.bg").animate({
-					opacity: '0.5'
-				}, 'fast');
+				hideTabs();
 
 				return false;
+
+			} else if($("#home p a.active").length) {
+
+				hideTabs();
+
+			}
+
+			// Começa animacao do clicado
+
+			var itemOffset = $(tabLink).position();
+			var itemTop = itemOffset.top;
+			var itemLeft = itemOffset.left;
+
+			$(tabLink).attr('rel', itemTop);
+
+			$(tabLink).addClass('active').removeClass('inactive')
+			.css({
+				top: itemTop,
+				left: itemLeft
+			});
+
+			if($.browser.msie) {
+
+				$(tabLink).css({
+					width: '1920px',
+					borderWidth: '4px',
+					fontSize: '200%',
+					top: '180%',
+					left: itemLeft,
+					paddingBottom: 10
+				}).addClass('active').removeClass('inactive')
+
+			} else {
+
+				$(tabLink).animate({
+					width: '1920px',
+					borderWidth: '4px',
+					fontSize: '200%',
+					top: '180%',
+					left: itemLeft,
+					paddingBottom: 10
+				}, 'fast', function() {
+					$(tabLink).addClass('active').removeClass('inactive')
+				});
+			}
+
+			$("#home #" + tabID).animate({
+				right: 0
+			}, 'fast');
+
+			$("#home p span").animate({
+				opacity: '0.2'
+			}, 'fast');
+
+			$("img.bg").animate({
+				opacity: '0.5'
+			}, 'fast');
+
+		}
+
+		$("#home p a").click(
+
+			function() {
+
+				var itemID = $(this).attr('class').split(' ');
+				var itemID = itemID[0];
+
+				doTab(itemID, this);
 
 			}
 		);
@@ -423,9 +428,9 @@
 	<h1>Cardume<img src="img/logo_preto.png"/></h1>
 	<p class="info">
 		<span>Enquanto nosso <del>café</del> site não fica pronto<br/>
-		leia um pouco </span><a href="#" class="sobre">sobre nós</a><span>,<br/>
-		dê uma olhada em alguns dos </span> <a href="#" class="trabalhos">nossos trabalhos<b class="close"> X</b></a><br/>
-		<span>e, se quiser, entre em</span> <a href="#" class="contato">contato</a><span>!</span>
+		leia um pouco </span><a href="#!/sobre/" class="sobre">sobre nós</a><span>,<br/>
+		dê uma olhada em alguns dos </span> <a href="#!/trabalhos/" class="trabalhos">nossos trabalhos<b class="close"> X</b></a><br/>
+		<span>e, se quiser, entre em</span> <a href="#!/contato/" class="contato">contato</a><span>!</span>
 	</p>
 
 	<div id="sobre" class="tab">
