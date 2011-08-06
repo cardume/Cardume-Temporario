@@ -126,14 +126,7 @@ $(document).ready(function() {
 			right: 0
 		}, 'fast')
 
-		.load( tabID + '.htm', function() {
-
-			setDimensions();
-
-			hoverScroll("#sobre", "#sobre .content");
-			hoverScroll("#trabalhos", "#trabalhos ul");
-
-		});
+		.load( tabID + '.htm', function() { ajaxLoaded(tabID); });
 
 		$("#home p span").animate({
 			opacity: '0.2'
@@ -181,19 +174,34 @@ $(document).ready(function() {
 
 	});
 
-	$("#trabalhos img").hover(
-		function() {
-			$(this).animate({
-				opacity: 1
-			}, 'fast')
-		},
-		function() {
-			$(this).animate({
-				opacity: 0.4
-			}, 'fast')
-		}
-	);
+	function ajaxLoaded(tabLoaded) {
 
+		setDimensions();
+
+		if(tabLoaded == 'sobre') {
+
+			hoverScroll("#sobre", "#sobre .content");
+
+		} else if (tabLoaded == 'trabalhos') {
+
+			hoverScroll("#trabalhos", "#trabalhos ul");
+
+			$("#trabalhos img").hover(
+				function() {
+					$(this).animate({
+						opacity: 1
+					}, 'fast')
+				},
+				function() {
+					$(this).animate({
+						opacity: 0.4
+					}, 'fast')
+				}
+			);
+
+		}
+
+	}
 
 	$(window).hashchange(function() {
 
