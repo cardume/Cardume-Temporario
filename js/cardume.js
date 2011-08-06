@@ -253,7 +253,7 @@ $(document).ready(function() {
 		if($.browser.msie) {
 
 			$("#home p a.active").css({
-				width: 150,
+				width: 'auto',
 				fontSize: '100%',
 				borderWidth: '1px',
 				top: itemTop,
@@ -287,6 +287,8 @@ $(document).ready(function() {
 		$("img.bg").animate({
 			opacity: '1'
 		}, 'fast');
+
+		$('.bg, h1, p.info').removeClass('close');
 
 	}
 
@@ -351,24 +353,39 @@ $(document).ready(function() {
 			opacity: '0.5'
 		}, 'fast');
 
+		$('.bg, h1, p.info').addClass('close');
+
+		$('.close').click(function() {
+
+			goHome();
+
+			return false;
+
+		});
+
 	}
 
-	$("#home p a").click(
+	function goHome() {
 
-		function() {
+		hideTabs();
+
+		window.location = '#!/home';
+
+	}
+
+		
+
+	$("#home p a").click(function() {
 
 			if($(this).hasClass('active')) {
 
-				hideTabs();
-
-				window.location = '#!/home';
+				goHome();
 
 				return false;
 
 			}
 
-		}
-	);
+	});
 
 
 	function hoverScroll(wrapper, content){

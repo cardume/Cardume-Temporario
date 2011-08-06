@@ -9,6 +9,10 @@ html, body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+.close {
+	cursor: pointer;
+}
+
 h1 {
 	width: 304px;
 	height: 333px;
@@ -73,6 +77,12 @@ h1 img {
 
 #home p.info a.active {
 	position: absolute;
+}
+
+#home p.info a.inactive {
+	position: static !important;
+	display: inline !important;
+	width: auto !important
 }
 
 #home p.info a:hover {
