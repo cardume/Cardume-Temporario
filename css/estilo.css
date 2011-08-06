@@ -153,6 +153,10 @@ h1 img {
 	margin-top: 1px;
 }
 
+#home #contato .email {
+	color: #e1e1e1;
+}
+
 #home #contato form {
 	margin: 40px;
 }
@@ -162,10 +166,19 @@ h1 img {
 	border: 0;
 	margin-bottom: 20px;
 	font-family: Arial, Helvetica, sans-serif;
-	background-color: #666;
+	background-color: #b1b1b1;
 	color: #111;
-	box-shadow: inset 1px 1px 2px #000;
 	border-radius: 3px;
+}
+
+#home #contato form input:-moz-placeholder, #home #contato form textarea:-moz-placeholder {
+	color: #444;
+	text-transform: lowercase;
+}
+
+#home #contato form input::-webkit-input-placeholder, #home #contato form textarea::-webkit-input-placeholder {
+	color: #444;
+	text-transform: lowercase;
 }
 
 #home #contato form textarea {

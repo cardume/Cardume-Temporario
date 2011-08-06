@@ -126,7 +126,11 @@ $(document).ready(function() {
 			right: 0
 		}, 'fast')
 
+		// AJAX!
+
 		.load( tabID + '.htm', function() { ajaxLoaded(tabID); });
+
+		//
 
 		$("#home p span").animate({
 			opacity: '0.2'

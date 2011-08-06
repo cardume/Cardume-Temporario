@@ -168,29 +168,46 @@ function setDimensions() {
 	$("#home #contato").each(
 		function() {
 
-			var fontSize = fullWidth * 0.012;
+			var infoMargin = fullWidth / 27.35;
+			var emailFontSize = fullWidth * 0.012;
+
+			$(this).find('.info').css({
+				margin: infoMargin
+			});
+
+			$(this).find('.email').css({
+				fontSize: emailFontSize
+			});
+
 			var formMargin = fullWidth / 27.35;
+			var inputFontSize = fullWidth * 0.010;
 			var inputMargin = fullWidth / 54.7;
 			var inputPadding = fullWidth / 109.4;
-			var textareaHeight = fullHeight / 2.386;
+			var textareaHeight = fullHeight / 4;
 
 			var inputWidth = $("#contato").width() - ( inputPadding * 2 ) - ( formMargin * 2 );
 
 			$(this).find('form').css({
-				margin: formMargin
+				margin: formMargin,
+				position: 'absolute',
+				bottom: 0
 			});
 
 			$(this).find('input, textarea').css({
-				fontSize: fontSize,
+				fontSize: inputFontSize,
 				padding: inputPadding,
 				marginBottom: inputMargin
 			}).width(inputWidth);
+
+			$(this).find('input[type=submit]').css({
+				width: '100%'
+			});
 
 			$(this).find('textarea').css({
 				height: textareaHeight
 			});
 
-			if(fontSize <= 9) {
+			if(inputFontSize <= 9) {
 
 				$(this).find('input, textarea').css('font-size', 9);
 
