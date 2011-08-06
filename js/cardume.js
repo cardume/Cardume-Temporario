@@ -294,13 +294,7 @@ $(document).ready(function() {
 
 		tabLink = typeof(tabLink) != 'undefined' ? tabLink : '#home p a.' + tabID;
 
-		if($(tabLink).hasClass('active')) {
-
-			hideTabs();
-
-			return false;
-
-		} else if($("#home p a.active").length) {
+		if($("#home p a.active").length) {
 
 			hideTabs();
 
@@ -467,10 +461,9 @@ $(document).ready(function() {
 
 		var location = window.location.hash;
 		var location = location.split('/');
-		var location = location[1];
 
-		if(location != 'home') {
-			doTab(location);
+		if(location[1] != 'home') {
+			doTab(location[1]);
 		}
 
 	});
