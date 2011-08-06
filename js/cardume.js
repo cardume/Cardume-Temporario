@@ -61,7 +61,7 @@ $(document).ready(function() {
 
 			$("#home #" + tabID + ".tab").animate({
 				right: -tabSize
-			}, 'fast');
+			}, 'fast').empty();
 
 			$("#home p span").animate({
 				opacity: '1'
@@ -122,9 +122,18 @@ $(document).ready(function() {
 			});
 		}
 
-		$("#home #" + tabID).animate({
+		$("#home #" + tabID + ".tab").animate({
 			right: 0
-		}, 'fast');
+		}, 'fast')
+
+		.load( tabID + '.htm', function() {
+
+			setDimensions();
+
+			hoverScroll("#sobre", "#sobre .content");
+			hoverScroll("#trabalhos", "#trabalhos ul");
+
+		});
 
 		$("#home p span").animate({
 			opacity: '0.2'
