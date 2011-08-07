@@ -46,8 +46,8 @@ h1 img {
 }
 
 .[ {
-	width: 60px;
-	height: 60px;
+	width: 120px;
+	height: 120px;
 	background: url(../img/loading.gif);
 	text-indent: -9999px;
 	font-size: 10px;
