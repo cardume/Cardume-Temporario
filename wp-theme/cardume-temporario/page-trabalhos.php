@@ -1,47 +1,16 @@
-<ul>
+<?php query_posts('post_type=projeto&posts_per_page=-1'); ?>
+<?php if(have_posts()) : ?>
 
-	<li>
-		<img src="http://lorempixum.com/632/400/" />
-	</li>
+	<ul>
 
-	<li>
-		<img src="http://lorempixum.com/632/400/" />
-	</li>
+	<?php while(have_posts()) : the_post(); ?>
 
-	<li>
-		<img src="http://lorempixum.com/632/400/" />
-	</li>
+		<li>
+			<?php the_post_thumbnail('projeto-thumb'); ?>
+		</li>
 
-	<li>
-		<img src="http://lorempixum.com/632/400/" />
-	</li>
+	<?php endwhile; ?>
 
-	<li>
-		<img src="http://lorempixum.com/632/400/" />
-	</li>
+	</ul>
 
-	<li>
-		<img src="http://lorempixum.com/632/400/" />
-	</li>
-
-	<li>
-		<img src="http://lorempixum.com/632/400/" />
-	</li>
-
-	<li>
-		<img src="http://lorempixum.com/632/400/" />
-	</li>
-
-	<li>
-		<img src="http://lorempixum.com/632/400/" />
-	</li>
-
-	<li>
-		<img src="http://lorempixum.com/632/400/" />
-	</li>
-
-	<li>
-		<img src="http://lorempixum.com/632/400/" />
-	</li>
-
-</ul>
+<?php endif; ?>
