@@ -45,7 +45,7 @@ h1 img {
 	font-weight: bold;
 }
 
-.loading {
+.[ {
 	width: 60px;
 	height: 60px;
 	background: url(../img/loading.gif);
@@ -54,6 +54,8 @@ h1 img {
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	margin-top: -60px;
+	margin-left: -60px;
 	color: #f6f6f6;
 	text-transform: uppercase;
 }

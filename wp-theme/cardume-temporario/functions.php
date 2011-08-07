@@ -6,7 +6,7 @@ if ( function_exists( 'add_theme_support' ) ) {
 
 }
 
-add_image_size( 'projeto-thumb', 632, 400, true );
+add_image_size( 'projeto-thumb', 632, null, true );
 
 add_action( 'init', 'register_cpt_projeto' );
 

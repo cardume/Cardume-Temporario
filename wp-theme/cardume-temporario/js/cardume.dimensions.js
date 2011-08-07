@@ -145,6 +145,8 @@ function setDimensions() {
 			var originalWidth = $(this).width();
 			var originalHeight = $(this).height();
 
+			var coef 
+
 			var imgWidth = tabWidth-80;
 			var imgHeight = imgWidth / ( originalWidth / originalHeight );
 
