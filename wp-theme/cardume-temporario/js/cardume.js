@@ -218,6 +218,29 @@ $(document).ready(function() {
 
 		}
 
+		switch(location[1]) {
+
+			case 'trabalhos':
+
+				document.title = 'Nossos trabalhos | Cardume';
+				break;
+
+			case 'sobre':
+
+				document.title = 'Sobre nós | Cardume';
+				break;
+
+			case 'contato':
+
+				document.title = 'Contato | Cardume';
+				break;
+
+			default:
+
+				document.title = 'Cardume';
+
+		}
+
 	});
 
 	$(window).hashchange();
