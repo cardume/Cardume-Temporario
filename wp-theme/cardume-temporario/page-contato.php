@@ -1,5 +1,3 @@
-<?php get_header(); ?>
-
 <ul class="info">
 
 	<li class="email">contato@cardume.art.br</li>
@@ -19,5 +17,3 @@
 	<input type="submit" value="Enviar"/>
 
 </form>
-
-<?php get_footer(); ?>

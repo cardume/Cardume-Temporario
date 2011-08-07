@@ -14,11 +14,11 @@
 <body>
 <div id="home">
 
-	<img src="img/bg_.jpg" class="bg" />
+	<img src="<?php bloginfo('template_directory'); ?>/img/bg_.jpg" class="bg" />
 
 	<p class="msie">Ei amigo, tá na hora de baixar um navegador mais bacana, né?<br/>Que tal o <a href="http://www.mozilla.com/en-US/firefox/fx/" target="_blank" title="Mozilla Firefox">Mozilla Firefox</a> ou o <a href="http://www.google.com/chrome?hl=pt-BR" target="_blank" title="Google Chrome">Google Chrome</a>?</p>
 
-	<h1><?php bloginfo('name'); ?><img src="img/logo_preto.png" /></h1>
+	<h1><?php bloginfo('name'); ?><img src="<?php bloginfo('template_directory'); ?>/img/logo_preto.png" /></h1>
 
 	<p class="info">
 		<span>Enquanto nosso <del>café</del> site não fica pronto<br/>

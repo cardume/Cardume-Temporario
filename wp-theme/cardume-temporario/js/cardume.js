@@ -128,7 +128,7 @@ $(document).ready(function() {
 
 		// AJAX!
 
-		.load( tabID + '.htm', function() { ajaxLoaded(tabID); });
+		.load(tabID, function() { ajaxLoaded(tabID); });
 
 		//
 
